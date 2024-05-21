@@ -105,7 +105,7 @@ ossl_dh_initialize(int argc, VALUE *argv, VALUE self)
     pkey = ossl_pkey_read_generic(in, Qnil);
     BIO_free(in);
     if (!pkey) {
-        printf("blew up in ossl_dh_initialize\N");
+        printf("blew up in ossl_dh_initialize\n");
         ossl_raise(eDHError, "could not parse pkey");
     }
 
