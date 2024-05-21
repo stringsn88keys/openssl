@@ -238,8 +238,10 @@ ossl_pkey_new_from_data(int argc, VALUE *argv, VALUE self)
     bio = ossl_obj2bio(&data);
     pkey = ossl_pkey_read_generic(bio, ossl_pem_passwd_value(pass));
     BIO_free(bio);
-    if (!pkey)
+    if (!pkey) {
+        printf("blew up in ossl_pkey_new_from_data\n");s
 	ossl_raise(ePKeyError, "Could not parse PKey");
+    }
     return ossl_pkey_new(pkey);
 }
 
