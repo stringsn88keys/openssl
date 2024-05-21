@@ -104,8 +104,10 @@ ossl_dh_initialize(int argc, VALUE *argv, VALUE self)
 
     pkey = ossl_pkey_read_generic(in, Qnil);
     BIO_free(in);
-    if (!pkey)
+    if (!pkey) {
+        printf("blew up in ossl_dh_initialize\N");
         ossl_raise(eDHError, "could not parse pkey");
+    }
 
     type = EVP_PKEY_base_id(pkey);
     if (type != EVP_PKEY_DH) {
