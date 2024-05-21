@@ -72,6 +72,7 @@ ossl_pkey_new(EVP_PKEY *pkey)
 
     obj = rb_protect(pkey_new0, (VALUE)pkey, &status);
     if (status) {
+        printf("status blew up with %d\n", status);
 	EVP_PKEY_free(pkey);
 	rb_jump_tag(status);
     }
